@@ -1,3 +1,18 @@
 class User < ActiveRecord::Base
-  # write associations here
+
+  has_many :rides
+  has_many :attractions, through: :rides
+
+  validates :password, presence: true
+
+  def mood
+    if happiness > nausea
+      "happy"
+    elsif nausea > happiness
+      "sad"
+    else
+      "same level"
+    end
+  end
+
 end
